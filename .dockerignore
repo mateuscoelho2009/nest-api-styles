@@ -1,0 +1,5 @@
+*
+!src/
+!Dockerfile
+!package*.json
+!tsconfig*.json

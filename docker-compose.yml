@@ -1,0 +1,38 @@
+version: '3.5'
+
+services:
+  web:
+    image: api-styles
+    build:
+      context: .
+    environment:
+      TYPEORM_CONNECTION: postgres
+      TYPEORM_HOST: postgres
+      TYPEORM_USERNAME: postgres
+      TYPEORM_PASSWORD: changeme
+      TYPEORM_DATABASE: api-styles
+      TYPEORM_PORT: "5432"
+      TYPEORM_SYNCHRONIZE: "false"
+      TYPEORM_LOGGING: "true"
+      TYPEORM_MIGRATIONS: 'dist/migrations/**/*.js'
+      TYPEORM_ENTITIES: /app/dist/entities/**/*.entity.js
+    command: node dist/main.js
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:10.7
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: api-styles
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres:
