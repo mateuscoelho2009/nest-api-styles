@@ -63,15 +63,17 @@ export class ConversationsController {
       count,
       value: messagesMetadata,
       actions: {
-        href: `${BASE_URL}${CONVERSATIONS_RESOURSE}/${id}${MESSAGES_RESOURSE}`,
-        method: 'POST',
-        desc: 'Sent message to conversation',
-        value: [
-          {
-            name: 'text',
-            desc: 'Your reply',
-          },
-        ],
+        create: {
+          href: `${BASE_URL}${CONVERSATIONS_RESOURSE}/${id}${MESSAGES_RESOURSE}`,
+          method: 'POST',
+          desc: 'Sent message to conversation',
+          value: [
+            {
+              name: 'text',
+              desc: 'Your reply',
+            },
+          ],
+        },
       },
     }
   }
